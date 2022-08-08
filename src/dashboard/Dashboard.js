@@ -279,7 +279,7 @@ function Dashboard() {
                     <div class="price-container" style={{alignItems: 'center'}}>
                       { data.email=="pranshujain0221@gmail.com" ? <>
                       <h5 style={{ color: "green" }}>Parentheses : </h5>
-                      <button class="btn" style={{marginLeft: '20px'}}><a href={data.offer} >Discover</a></button>
+                      <button class="btn" style={{marginLeft: '20px'}}><a  target="blank" href={data.offer} >Offer Letter</a></button>
                       </> :
                       <h4 style={{color: 'red'}}>No Offers</h4>
                       }

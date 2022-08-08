@@ -12,7 +12,7 @@ import { doc, getDoc } from "firebase/firestore";
 import { database, storage } from '../firebase/firebaseConfig'
 import DataService from '../firebase/firebaseOperations'
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import {VscServerProcess} from 'react-icons/vsc';
+import { VscServerProcess } from 'react-icons/vsc';
 
 
 function CompDashboard() {
@@ -184,21 +184,30 @@ function CompDashboard() {
                   <h3 class="section-header">Selected Students</h3>
                   <div class="feature section-padding section-border-radius">
                     <div style={{ alignItems: 'center' }} class="price-container">
-                      <h5 style={{ color: "green" }}>Anil Sharma</h5>
-                      <button className='btn' style={{ marginLeft: '20px' }}> <a href={data.resume} download={"true"}>Resume</a></button>
-                      <button className='btn' style={{ marginLeft: '20px' }}> <a href={data.cover} download={"true"}>Cover</a></button>
+                      {data.email == "pranshujain0111@gmail.com" ?
+                        <>
+                          <h5 style={{ color: "green" }}>Anil Sharma</h5>
+                          <button className='btn' style={{ marginLeft: '20px' }}> <a href={data.resume} target="blank" download={"true"}>Resume</a></button>
+                          <button className='btn' style={{ marginLeft: '20px' }}> <a href={data.cover} target="blank" download={"true"}>Cover</a></button>
+                        </> :
+                        <h4 style={{ color: 'red' }}>No Student Selected</h4>
+                      }
                     </div>
-                    <span style={{ color: 'green', fontWeight: '600' }}>Want to give Offer letter?</span>
-                    <input type={"file"} accept={".pdf"} onChange={(e) => {
-                      const offerref = ref(storage, `files/${e.target.files[0].name}`);
-                      uploadBytes(offerref, e.target.files[0]).then(async (snapshot) => {
+                    {data.email == "pranshujain0111@gmail.com" ?
+                      <>
+                        <span style={{ color: 'green', fontWeight: '600' }}>Want to give Offer letter?</span>
+                        <input type={"file"} accept={".pdf"} onChange={(e) => {
+                          const offerref = ref(storage, `files/${e.target.files[0].name}`);
+                          uploadBytes(offerref, e.target.files[0]).then(async (snapshot) => {
 
-                        const val = await getDownloadURL(snapshot.ref);
-                        await DataService.updateData("user", "pranshujain0221", { offer: val });
-                        alert("Done ...");
-                      });
-                    }
-                    } />
+                            const val = await getDownloadURL(snapshot.ref);
+                            await DataService.updateData("user", "pranshujain0221", { offer: val });
+                            alert("Done ...");
+                          });
+                        }}
+                        />
+                      </>
+                      : ""}
                   </div>
                 </div>
               </div>
