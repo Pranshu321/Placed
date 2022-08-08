@@ -8,9 +8,11 @@ import { TiTick } from 'react-icons/ti'
 import { Link, useHistory } from 'react-router-dom';
 import { auth } from '../firebase/firebaseConfig';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import {storage} from '../firebase/firebaseConfig'
+import {storage , database} from '../firebase/firebaseConfig'
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import DataService from '../firebase/firebaseOperations'
+import { doc, getDoc } from "firebase/firestore";
+
 
 function Dashboard() {
   const [display, setdisplay] = useState(false);
@@ -18,6 +20,8 @@ function Dashboard() {
   const [users, setusers] = useState({});
   const [resume, setresume] = useState();
   const [cover, setcover] = useState();
+  const [data , setdata] = useState({});
+  const [databasesearch , setdatabasesearch] = useState("");
 
   const [image, setImage] = useState("https://res.cloudinary.com/muhammederdem/image/upload/v1537638518/Ba%C5%9Fl%C4%B1ks%C4%B1z-1.jpg")
 
@@ -39,15 +43,15 @@ function Dashboard() {
       await DataService.updateData("company", "pranshujain0111" , {cover : val});
     });
    }
-
   useEffect(() =>
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid = user.uid;
         setusers(user);
-        console.log(user.displayName);
+        const st = user.email.split('@')[0];
+        setdatabasesearch(st);
+        
         setdisplay(false);
         // ...
       } else {
@@ -58,6 +62,24 @@ function Dashboard() {
     })
 
     , []);
+
+    useEffect(() => {
+      getuser(databasesearch);
+    });
+   
+    const getuser = async (usr) => {
+      const docRef = doc(database, "user", usr);
+      const docSnap = await getDoc(docRef);
+   
+      if (docSnap.exists()) {
+        // console.log("Document data:", docSnap.data());
+        setdata(docSnap.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+   
+    }
 
 
 
@@ -99,7 +121,7 @@ function Dashboard() {
 
               <div class="head section-border-radius">
                 <form onSubmit={uploadThings}>
-                  <h4 style={{ color: "black" , marginRight: '3rem'}}>Welcome <span style={{ color: '#725CDA' }}>{users.displayName}</span> </h4>
+                  <h4 style={{ color: "black" , marginRight: '3rem'}}>Welcome <span style={{ color: '#725CDA' }}>{data.Name}</span> </h4>
                   <label htmlFor='resume' style={{ color: 'purple' }}>
                     Resume
                     <input id='resume' name='resume' type={"file"} accept={".pdf"} required="true" onChange={(e) => {
@@ -254,8 +276,13 @@ function Dashboard() {
                 <div class="features">
                   <h3 class="section-header">Offer Letter</h3>
                   <div class="feature section-padding section-border-radius">
-                    <div class="price-container">
-                      <h2 style={{ color: "red" }}>No Offer</h2>
+                    <div class="price-container" style={{alignItems: 'center'}}>
+                      { data.email=="pranshujain0221@gmail.com" ? <>
+                      <h5 style={{ color: "green" }}>Parentheses : </h5>
+                      <button class="btn" style={{marginLeft: '20px'}}><a href={data.offer} >Discover</a></button>
+                      </> :
+                      <h4 style={{color: 'red'}}>No Offers</h4>
+                      }
                     </div>
                   </div>
                 </div>

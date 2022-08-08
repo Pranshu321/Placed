@@ -372,6 +372,19 @@ a {
   cursor: pointer;
   transition: all 0.3s linear;
 }
+.btn{
+  outline: none;
+  border: 1px solid #725cda;
+  padding: 0.3rem 0.6rem;
+  min-width: 110px;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #725cda;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
 .message .btn-discover:hover {
   background-color: transparent;
 }
@@ -648,7 +661,7 @@ a {
 }
 .apps-features .features .price-container {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   margin-bottom: 2rem;
 }
 .apps-features .features .price-container h2 {

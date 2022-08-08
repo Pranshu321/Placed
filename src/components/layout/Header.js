@@ -120,6 +120,9 @@ const Header = ({
                     <li>
                       <Link to="/career" onClick={closeMenu}>Carrer Tips</Link>
                     </li>
+                    <li>
+                      <Link to="/price" onClick={closeMenu}>Subscription</Link>
+                    </li>
                   </ul>
                   {!hideSignin &&
                     <ul

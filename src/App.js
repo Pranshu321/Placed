@@ -16,6 +16,7 @@ import AuthCompany from './AuthCompany/AuthCompany';
 import JobsList from './components/jobs/JobsList';
 import Dashboard from './dashboard/Dashboard';
 import CompDashboard from './CompanyDashboard/Dashboard';
+import Price from './components/Price';
 
 // Initialize Google Analytics
 ReactGA.initialize(process.env.REACT_APP_GA_CODE);
@@ -51,7 +52,7 @@ const App = () => {
           <AppRoute exact path="/Jobs" component={JobsList}  />
           <AppRoute exact path="/dash" component={Dashboard}  />
           <AppRoute exact path="/Compdash" component={CompDashboard}  />
-        
+          <AppRoute exact path="/price" component={Price} layout={LayoutDefault} />
         </Switch>
       )} />
   );
