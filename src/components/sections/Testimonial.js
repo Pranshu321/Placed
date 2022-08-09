@@ -52,6 +52,7 @@ const Testimonial = ({
     <section
       {...props}
       className={outerClasses}
+      style={{padding: "2rem 0"}}
     >
       <div className="container">
         <div className={innerClasses}>

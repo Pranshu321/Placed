@@ -163,5 +163,20 @@
     "location": "Worldwide",
     "languages": ["JavaScript"],
     "tools": ["React", "Sass"]
+  },
+  {
+    "id": 12,
+    "company": "Parentheses Labs",
+    "logo": "./images/loop-studios.svg",
+    "new": false,
+    "featured": false,
+    "position": "Software Developer",
+    "role": "Developer",
+    "level": "Junior",
+    "postedAt": "3days ago",
+    "contract": "Part Time",
+    "location": "Remote",
+    "languages": ["bubble.io"],
+    "tools": ["React", "Sass" , "Firebase"]
   }
 ]

@@ -65,6 +65,9 @@ const Job = (props) => {
           </span>
         ))}
       </div>
+      <div>
+      <button class="btn" style={{marginLeft: "20px"}}>Apply</button>
+      </div>
     </div>
   );
 };

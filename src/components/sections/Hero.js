@@ -46,6 +46,7 @@ const Hero = ({
     <section
       {...props}
       className={outerClasses}
+      style={{padding: '2rem 0'}}
     >
       <div className="container-sm">
         <div className={innerClasses}>
