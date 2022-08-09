@@ -95,11 +95,13 @@ _Below is an example of how you can instruct your audience on installing and set
    git clone https://github.com/Pranshu321/Placed.git
    ```
 2. Now install all npm packages.
-```sh
-npm i
-```
+   ```sh
+    npm i 
+   ```
+   
 3. Now you have define own firebase project config at `firebase/firebaseconfig.js`.
-![image](https://user-images.githubusercontent.com/86917304/183728317-30372103-f0d7-4e99-b12c-7f0cd825ea18.png)
+
+  ![image](https://user-images.githubusercontent.com/86917304/183728317-30372103-f0d7-4e99-b12c-7f0cd825ea18.png)
 
 4. After all steps defined above you can run command `npm start` to run application at `localhost:3000`.
 
